@@ -1,0 +1,111 @@
+.calendar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-white);
+  border-radius: var(--br-12);
+  padding: var(--padding-16);
+  padding-bottom: var(--padding-32);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--padding-12);
+}
+
+.navButton {
+  background: none;
+  border: none;
+  font-size: var(--fs-20);
+  font-weight: bold;
+  color: var(--color-darkslateblue-400);
+  cursor: pointer;
+  padding: var(--padding-8);
+  border-radius: var(--br-8);
+  transition: background-color 0.2s;
+}
+
+.navButton:hover {
+  background-color: var(--color-whitesmoke-200);
+}
+
+.monthYear {
+  font-size: var(--fs-16);
+  font-weight: 600;
+  color: var(--color-darkslateblue-400);
+}
+
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--gap-8);
+  margin-bottom: var(--padding-8);
+}
+
+.weekDay {
+  text-align: center;
+  font-size: var(--fs-12);
+  font-weight: 600;
+  color: var(--color-gray-200);
+  padding: var(--padding-6);
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--gap-6);
+  flex: 1;
+  padding-bottom: var(--padding-24);
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-14);
+  font-weight: 500;
+  color: var(--color-black);
+  cursor: pointer;
+  border-radius: var(--br-8);
+  transition: all 0.2s;
+  position: relative;
+}
+
+.day:hover {
+  background-color: var(--color-whitesmoke-200);
+}
+
+.day.otherMonth {
+  color: var(--color-gray-300);
+}
+
+.day.today {
+  background-color: var(--color-darkslateblue-400);
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.day.today:hover {
+  background-color: var(--color-darkslateblue-300);
+}
+
+.day.selected {
+  background-color: var(--color-lightsteelblue-300);
+  color: var(--color-white);
+}
+
+.day.selected:hover {
+  background-color: var(--color-lightsteelblue-400);
+}
+
+.emptyDay {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

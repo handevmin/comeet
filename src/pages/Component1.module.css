@@ -1,0 +1,312 @@
+.div {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  height: 812px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--fs-14);
+  color: var(--color-darkslategray);
+  font-family: var(--font-inter);
+}
+.list,
+.lists {
+  position: absolute;
+  left: 16px;
+}
+.list {
+  top: 594px;
+  border-radius: var(--br-8);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-darkslateblue-100);
+  box-sizing: border-box;
+  width: 343px;
+  height: 330px;
+  overflow: hidden;
+  color: var(--color-black);
+}
+.lists {
+  top: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.cell {
+  border-radius: var(--br-8);
+  display: flex;
+  align-items: center;
+  padding: var(--padding-8) var(--padding-0);
+  gap: var(--gap-12);
+}
+.avatar {
+  width: var(--width-32);
+  position: relative;
+  border-radius: var(--br-1000);
+  background-color: var(--color-whitesmoke-100);
+  height: var(--height-32);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.avatarChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-darkslateblue-300);
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.div2 {
+  width: var(--width-267);
+  position: relative;
+  line-height: var(--lh-20);
+  font-weight: 500;
+  display: inline-block;
+}
+.avatarInner {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-lightsteelblue);
+}
+.avatarIcon {
+  width: var(--width-32);
+  position: relative;
+  border-radius: var(--br-1000);
+  height: var(--height-32);
+  object-fit: cover;
+}
+.carloEmilion,
+.emailfakedomainnet {
+  width: var(--width-267);
+  position: relative;
+  display: inline-block;
+}
+.carloEmilion {
+  line-height: 140%;
+  font-weight: 500;
+}
+.emailfakedomainnet {
+  font-size: var(--fs-12);
+  line-height: 150%;
+  color: var(--color-gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.div6 {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  line-height: 140%;
+  font-weight: 600;
+}
+.header {
+  top: 44px;
+  left: 0;
+  width: 375px;
+  height: 56px;
+  text-align: center;
+  font-size: 23px;
+  color: var(--color-slategray);
+}
+.comeet,
+.header,
+.pills {
+  position: absolute;
+}
+.comeet {
+  top: 14px;
+  left: calc(50% - 46.5px);
+  letter-spacing: -0.02em;
+  line-height: 140%;
+  font-weight: 600;
+}
+.pills {
+  top: 112px;
+  left: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-12);
+  color: var(--color-white);
+}
+.pill {
+  border-radius: var(--br-20);
+  background-color: var(--color-darkslateblue-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-6) var(--padding-14);
+}
+.div7 {
+  position: relative;
+  line-height: 140%;
+  font-weight: 500;
+}
+.divPill {
+  border-radius: var(--br-20);
+  background-color: var(--color-whitesmoke-200);
+  border: 2px solid var(--color-darkslateblue-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-6) var(--padding-14);
+  color: var(--color-darkslateblue-200);
+}
+.notchIcon,
+.statusBar {
+  position: absolute;
+  overflow: hidden;
+}
+.statusBar {
+  top: 0;
+  left: 0;
+  width: 375px;
+  height: 44px;
+}
+.notchIcon {
+  height: calc(100% - 14px);
+  width: calc(100% - 156px);
+  top: -2px;
+  right: 78px;
+  bottom: 16px;
+  left: 78px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  display: none;
+}
+.batteryIcon,
+.rightSide {
+  position: absolute;
+  height: 11.3px;
+}
+.rightSide {
+  top: 17.3px;
+  right: 14.6px;
+  width: 66.7px;
+}
+.batteryIcon {
+  top: 0;
+  right: 0.1px;
+  width: 24.3px;
+}
+.wifiIcon {
+  position: relative;
+  width: 15.3px;
+  height: var(--height-11);
+}
+.mobileSignalIcon {
+  position: relative;
+  width: 17px;
+  height: 10.7px;
+}
+.recordingIndicatorIcon {
+  position: absolute;
+  top: -9.3px;
+  right: 56.4px;
+  width: var(--width-6);
+  height: var(--height-6);
+  display: none;
+}
+.image7Icon,
+.leftSideIcon {
+  position: absolute;
+}
+.leftSideIcon {
+  top: 12px;
+  left: 21px;
+  width: 54px;
+  height: 21px;
+}
+.image7Icon {
+  top: 212px;
+  left: 10px;
+  width: 358px;
+  height: 304px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.avatar2 {
+  top: 454px;
+  left: 268px;
+  border-radius: var(--br-24);
+  background-color: var(--color-darkslateblue-200);
+  width: var(--width-12);
+  height: var(--height-11);
+}
+.avatar2,
+.avatar3,
+.div10,
+.div9 {
+  position: absolute;
+  overflow: hidden;
+}
+.div9 {
+  top: 454px;
+  left: 283px;
+  font-size: var(--fs-8);
+  line-height: 150%;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 118px;
+}
+.avatar3,
+.div10 {
+  top: 512px;
+}
+.avatar3 {
+  left: 172px;
+  border-radius: var(--br-24);
+  background-color: var(--color-lightsteelblue);
+  width: var(--width-12);
+  height: var(--height-11);
+}
+.div10 {
+  left: 187px;
+  font-size: var(--fs-8);
+  line-height: 150%;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 118px;
+}
+.iconcreate {
+  position: absolute;
+  top: 118px;
+  left: 193px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-darkslateblue-400);
+  color: var(--color-white);
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tabBarIcon {
+  position: absolute;
+  top: 735px;
+  left: 1px;
+  width: 375px;
+  height: 78px;
+  background-color: var(--color-whitesmoke-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray);
+  font-size: var(--fs-12);
+}

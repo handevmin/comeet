@@ -1,0 +1,230 @@
+.container {
+  width: 100%;
+  height: 812px;
+  background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-inter);
+}
+
+/* Status Bar */
+.statusBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.time {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.batteryIcon,
+.wifiIcon,
+.mobileSignalIcon,
+.recordingIndicatorIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.chatTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comeetImage {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.plusButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-darkslateblue-200);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--color-white);
+}
+
+.plusIcon {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-darkslateblue-400);
+  margin-top: -4px;
+}
+
+/* Filter Pills */
+.pills {
+  position: absolute;
+  top: 108px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.pillActive {
+  border-radius: var(--br-20);
+  background-color: var(--color-darkslateblue-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+}
+
+.pillInactive {
+  border-radius: var(--br-20);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-darkslateblue-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+}
+
+.pillText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.pillInactive .pillText {
+  color: var(--color-darkslateblue-200);
+}
+
+/* Chat List */
+.chatList {
+  position: absolute;
+  top: 144px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 144px - 78px); /* 하단 네비게이션 바 높이 제외 */
+  overflow-y: auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.chatItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 1px solid var(--color-whitesmoke-200);
+}
+
+.chatItem:last-child {
+  border-bottom: none;
+}
+
+.unreadDot {
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-crimson);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.avatar1,
+.avatar2,
+.avatar3,
+.avatar4,
+.avatar5,
+.avatar6,
+.avatar7 {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-left: 16px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.avatar1 {
+  background-color: var(--color-darkslateblue-300);
+}
+
+.avatar2 {
+  background-color: var(--color-lightsteelblue);
+}
+
+.avatar3 {
+  background-color: var(--color-mistyrose);
+  border: 1px solid var(--color-thistle);
+}
+
+.avatar4 {
+  background-color: var(--color-thistle);
+}
+
+.avatar5 {
+  background-color: var(--color-silver);
+}
+
+.avatar6 {
+  background-color: var(--color-beige);
+}
+
+.avatar7 {
+  background-color: var(--color-lightsteelblue-300);
+}
+
+.chatContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chatName {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-black);
+  line-height: 1.4;
+}

@@ -1,0 +1,198 @@
+.container {
+  width: 100%;
+  height: 812px;
+  background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-inter);
+}
+
+/* Status Bar */
+.statusBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.time {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.batteryIcon,
+.wifiIcon,
+.mobileSignalIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.backButton {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-black);
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.chatAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-darkslateblue-300);
+  margin-right: 8px;
+}
+
+.chatName {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+/* Period Selection */
+.periodTitle {
+  position: absolute;
+  top: 120px;
+  left: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-black);
+  z-index: 9;
+}
+
+.monthYear {
+  position: absolute;
+  top: 150px;
+  left: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-gray);
+  z-index: 9;
+}
+
+/* Days of Week */
+.daysOfWeek {
+  position: absolute;
+  top: 180px;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 8;
+}
+
+.dayOfWeek {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray);
+  padding: 8px 0;
+}
+
+/* Calendar Grid */
+.calendarGrid {
+  position: absolute;
+  top: 220px;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 7;
+}
+
+.dateCell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-gray);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s;
+  margin: 2px;
+}
+
+.dateCell:hover {
+  background-color: var(--color-whitesmoke-100);
+}
+
+.dateCell.selected {
+  background-color: var(--color-darkslateblue-400);
+  color: var(--color-white);
+}
+
+.dateCell.disabled {
+  color: var(--color-whitesmoke-200);
+  cursor: not-allowed;
+}
+
+.dateCell.disabled:hover {
+  background-color: transparent;
+}
+
+.dateCell.otherMonth {
+  color: var(--color-whitesmoke-200);
+  cursor: not-allowed;
+}
+
+.dateCell.otherMonth:hover {
+  background-color: transparent;
+}
+
+/* Share Button */
+.shareButton {
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  background-color: var(--color-darkslateblue-400);
+  border-radius: var(--br-20);
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  z-index: 10;
+}
+
+.shareButton:hover {
+  background-color: var(--color-darkslateblue-300);
+}
+
+.shareText {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-white);
+}

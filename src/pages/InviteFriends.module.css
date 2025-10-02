@@ -1,0 +1,234 @@
+.container {
+  width: 100%;
+  height: 812px;
+  background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-inter);
+}
+
+/* Status Bar */
+.statusBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.time {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.batteryIcon,
+.wifiIcon,
+.mobileSignalIcon,
+.recordingIndicatorIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.backButton {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-darkslateblue-400);
+  cursor: pointer;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.confirmButton {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-darkslateblue-400);
+  cursor: pointer;
+}
+
+/* Selected Contacts */
+.selectedSection {
+  position: absolute;
+  top: 108px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  z-index: 10;
+}
+
+.selectedContact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.selectedAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.removeButton {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.selectedName {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-black);
+  text-align: center;
+}
+
+/* Filter Section */
+.filterSection {
+  position: absolute;
+  top: 210px;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  z-index: 10;
+}
+
+.separator {
+  height: 1px;
+  background-color: var(--color-whitesmoke-200);
+  margin-bottom: 16px;
+}
+
+.filterPills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pillActive {
+  border-radius: var(--br-20);
+  background-color: var(--color-darkslateblue-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+}
+
+.pillInactive {
+  border-radius: var(--br-20);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-darkslateblue-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+}
+
+.pillText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.pillInactive .pillText {
+  color: var(--color-darkslateblue-200);
+}
+
+/* Friends List */
+.friendsList {
+  position: absolute;
+  top: 280px;
+  left: 0;
+  right: 0;
+  height: calc(100% - 280px - 78px);
+  overflow-y: auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.friendItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 1px solid var(--color-whitesmoke-200);
+}
+
+.friendItem:last-child {
+  border-bottom: none;
+}
+
+.friendAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.friendName {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.checkmark {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-black);
+}

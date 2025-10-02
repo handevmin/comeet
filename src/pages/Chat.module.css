@@ -1,0 +1,437 @@
+.container {
+  width: 100%;
+  height: 812px;
+  background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-inter);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Status Bar */
+.statusBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.time {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.batteryIcon,
+.wifiIcon,
+.mobileSignalIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+  border-bottom: 1px solid var(--color-whitesmoke-200);
+  gap: 12px;
+}
+
+.backButton {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-black);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.chatAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-darkslateblue-400);
+  flex-shrink: 0;
+}
+
+.chatName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-black);
+  flex: 1;
+  margin-left: 8px;
+}
+
+.menuButton {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-black);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+/* Main Content Area */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 16px;
+  margin-top: 100px; /* Header height + status bar */
+  margin-bottom: 158px; /* Input bar height + navigation bar height */
+  box-sizing: border-box;
+}
+
+.dateMarker {
+  font-size: 14px;
+  color: var(--color-gray);
+  text-align: center;
+  padding: 8px 16px;
+  background-color: var(--color-whitesmoke-100);
+  border-radius: var(--br-20);
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Other person's message (left side) */
+.otherMessage {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.otherBubble {
+  background-color: var(--color-whitesmoke-100);
+  border-radius: 18px 18px 18px 4px;
+  padding: 16px;
+  max-width: 80%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.otherText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-black);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.otherText div:first-child {
+  margin-bottom: 4px;
+}
+
+.inputButton {
+  background-color: var(--color-darkslateblue-400);
+  color: var(--color-white);
+  border-radius: var(--br-8);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.inputButton:hover {
+  background-color: var(--color-darkslateblue-300);
+}
+
+.resultsList {
+  margin: 12px 0;
+}
+
+.resultItem {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-black);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.registerButton {
+  background-color: var(--color-darkslateblue-400);
+  color: var(--color-white);
+  border-radius: var(--br-8);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.registerButton:hover {
+  background-color: var(--color-darkslateblue-300);
+}
+
+/* Registration Success Message */
+.registrationMessage {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.registrationBubble {
+  background-color: var(--color-darkslateblue-400);
+  border-radius: var(--br-20);
+  padding: 12px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeInOut 3s ease-in-out;
+}
+
+.registrationText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-white);
+  text-align: center;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* My message (right side) */
+.myMessage {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.myBubble {
+  background-color: var(--color-darkslateblue-400);
+  border-radius: 18px 18px 4px 18px;
+  padding: 12px 16px;
+  max-width: 80%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.myText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-white);
+  line-height: 1.4;
+}
+
+/* Message Input Bar */
+.inputBar {
+  position: absolute;
+  bottom: 38px; /* 하단 네비게이션 바 높이만큼 위로 */
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-whitesmoke-200);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.inputField {
+  width: 100%;
+  height: 48px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-whitesmoke-200);
+  border-radius: var(--br-24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.inputField:hover {
+  background-color: var(--color-whitesmoke-100);
+}
+
+.plusButton {
+  width: 28px;
+  height: 28px;
+  background-color: #ffffff !important;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.plusButton:hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* Bottom Icons */
+.bottomIcons {
+  position: absolute;
+  bottom: 142px; /* 입력바(80px) + 네비게이션바(78px) - 20px 더 위로 */
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 9;
+  animation: slideUp 0.3s ease-out;
+}
+
+.bottomIcons::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-whitesmoke-200);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.iconButton {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-whitesmoke-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid var(--color-whitesmoke-200);
+}
+
+.iconButton:hover {
+  background-color: var(--color-darkslateblue-100);
+  border-color: var(--color-darkslateblue-200);
+  transform: scale(1.05);
+}
+
+.locationIcon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: var(--color-black);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+}
+
+.locationIcon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-white);
+  border-radius: 50%;
+}
+
+.calendarIcon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: var(--color-white);
+  border: 3px solid var(--color-black);
+  border-radius: 3px;
+}
+
+.calendarIcon::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 6px;
+  background-color: var(--color-black);
+  border-radius: 3px 3px 0 0;
+  background-image: 
+    radial-gradient(circle, var(--color-white) 1.5px, transparent 1.5px),
+    radial-gradient(circle, var(--color-white) 1.5px, transparent 1.5px);
+  background-position: 2px 1.5px, 10px 1.5px;
+  background-size: 3px 3px, 3px 3px;
+  background-repeat: no-repeat;
+}
+
+.calendarIcon::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 3px;
+  right: 3px;
+  height: 2px;
+  background-color: var(--color-black);
+}
+
+
+/* Icon buttons now use emojis - no additional styles needed */

@@ -1,0 +1,328 @@
+.div {
+  width: 100%;
+  position: relative;
+  background-color: var(--bg-bg-default);
+  height: 812px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--fs-14);
+  color: var(--color-black);
+  font-family: Inter;
+}
+.activities {
+  position: absolute;
+  top: 144px;
+  left: 3px;
+  width: var(--width-375);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.cell {
+  align-self: stretch;
+  position: relative;
+  height: var(--height-72);
+  cursor: pointer;
+}
+.content {
+  position: absolute;
+  top: 15px;
+  left: 80px;
+  width: 279px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nameTimestamp,
+.text {
+  display: flex;
+  align-items: flex-start;
+}
+.text {
+  width: 191px;
+  flex-direction: column;
+}
+.nameTimestamp {
+  align-self: stretch;
+}
+.div2 {
+  position: relative;
+  line-height: var(--lh-20);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.avatar,
+.dot {
+  position: absolute;
+  top: 33px;
+  left: 5px;
+  border-radius: var(--br-50);
+  background-color: var(--color-crimson);
+  width: var(--width-6);
+  height: var(--height-6);
+}
+.avatar {
+  top: 12px;
+  left: 16px;
+  border-radius: var(--br-24);
+  background-color: var(--color-darkslateblue-200);
+  width: var(--width-48);
+  height: var(--height-48);
+  overflow: hidden;
+}
+.divCell {
+  align-self: stretch;
+  position: relative;
+  height: var(--height-72);
+}
+.divContent {
+  position: absolute;
+  top: 15px;
+  left: 80px;
+  width: 215px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.divText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.divAvatar {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  border-radius: var(--br-500);
+  background-color: var(--color-lightsteelblue-100);
+  border: 0.3px solid var(--color-lightsteelblue-300);
+  box-sizing: border-box;
+  width: var(--width-48);
+  height: var(--height-48);
+  overflow: hidden;
+}
+.cell2 {
+  align-self: stretch;
+  position: relative;
+  height: 82px;
+}
+.content2 {
+  position: absolute;
+  top: 15px;
+  left: 80px;
+  width: 279px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar2 {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  border-radius: var(--br-500);
+  background-color: var(--color-mistyrose);
+  border: 1px solid var(--color-lightsteelblue-300);
+  box-sizing: border-box;
+  width: var(--width-48);
+  height: var(--height-48);
+  overflow: hidden;
+}
+.cell3 {
+  align-self: stretch;
+  position: relative;
+  height: 86px;
+}
+.avatar3 {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  border-radius: var(--br-500);
+  background-color: var(--color-thistle);
+  border: 0.3px solid var(--color-lightsteelblue-300);
+  box-sizing: border-box;
+  width: var(--width-48);
+  height: var(--height-48);
+  overflow: hidden;
+}
+.cell4 {
+  align-self: stretch;
+  position: relative;
+  height: 97px;
+}
+.avatar4 {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  border-radius: var(--br-500);
+  background-color: var(--color-silver);
+  border: 0.3px solid var(--color-lightsteelblue-300);
+  box-sizing: border-box;
+  width: var(--width-48);
+  height: var(--height-48);
+  overflow: hidden;
+}
+.cell5 {
+  align-self: stretch;
+  position: relative;
+  height: 81px;
+}
+.avatar5 {
+  top: 12px;
+  left: 16px;
+  border-radius: var(--br-500);
+  background-color: var(--color-beige);
+  border: 0.3px solid var(--color-lightsteelblue-300);
+  width: var(--width-48);
+  height: var(--height-48);
+}
+.avatar5,
+.avatar6,
+.header {
+  position: absolute;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.avatar6 {
+  top: 12px;
+  left: 16px;
+  border-radius: var(--br-500);
+  background-color: var(--color-lightsteelblue-300);
+  border: 0.3px solid var(--color-lightsteelblue-200);
+  width: var(--width-48);
+  height: var(--height-48);
+}
+.header {
+  top: 44px;
+  left: 0;
+  width: var(--width-375);
+  display: flex;
+  align-items: center;
+  padding: var(--padding-12) var(--padding-16);
+  font-size: var(--fs-20);
+}
+.chat {
+  position: relative;
+  letter-spacing: -0.02em;
+  line-height: 140%;
+  font-weight: 600;
+}
+.notchIcon,
+.statusBar {
+  position: absolute;
+  overflow: hidden;
+}
+.statusBar {
+  top: 0;
+  left: 0;
+  width: var(--width-375);
+  height: 44px;
+}
+.notchIcon {
+  height: calc(100% - 14px);
+  width: calc(100% - 156px);
+  top: -2px;
+  right: 78px;
+  bottom: 16px;
+  left: 78px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  display: none;
+}
+.batteryIcon,
+.rightSide {
+  position: absolute;
+  top: 17.3px;
+  right: 14.6px;
+  width: 66.7px;
+  height: var(--height-11_3);
+}
+.batteryIcon {
+  top: 0;
+  right: 0.1px;
+  width: 24.3px;
+}
+.wifiIcon {
+  position: relative;
+  width: 15.3px;
+  height: var(--height-11);
+}
+.mobileSignalIcon {
+  position: relative;
+  width: 17px;
+  height: 10.7px;
+}
+.recordingIndicatorIcon {
+  position: absolute;
+  top: -9.3px;
+  right: 56.4px;
+  width: var(--width-6);
+  height: var(--height-6);
+  display: none;
+}
+.leftSideIcon {
+  position: absolute;
+  top: 12px;
+  left: 21px;
+  width: 54px;
+  height: var(--height-21);
+}
+.tabBarItem {
+  position: absolute;
+  top: 38px;
+  left: calc(50% + 113.5px);
+  width: 76px;
+  height: 44px;
+  cursor: pointer;
+}
+.image7Icon {
+  position: absolute;
+  top: 33px;
+  left: 109px;
+  width: 133px;
+  height: 58px;
+  object-fit: cover;
+}
+.pills {
+  position: absolute;
+  top: 96px;
+  left: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-8);
+  color: var(--bg-bg-default);
+}
+.pill {
+  border-radius: var(--br-20);
+  background-color: var(--color-darkslateblue-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-6) var(--padding-14);
+}
+.div9 {
+  position: relative;
+  line-height: 140%;
+  font-weight: 500;
+}
+.divPill {
+  border-radius: var(--br-20);
+  background-color: var(--icon-icon-onbrand);
+  border: 1px solid var(--border-border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-6) var(--padding-14);
+  color: var(--color-black);
+}
+.tabBarIcon {
+  position: absolute;
+  top: 731px;
+  left: 0;
+  width: var(--width-375);
+  height: var(--height-78);
+  object-fit: cover;
+}
