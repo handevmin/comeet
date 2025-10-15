@@ -35,10 +35,25 @@
   background-color: var(--color-white);
   border: var(--border-1);
   box-sizing: border-box;
-  height: var(--height-40);
+  height: auto;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   padding: var(--padding-8) var(--padding-16);
+  gap: 8px;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: var(--font-inter);
+  background-color: transparent;
+  color: var(--color-black);
+}
+
+.input::placeholder {
+  color: var(--color-gray);
 }
 .divLabel,
 .label {

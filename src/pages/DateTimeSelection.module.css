@@ -193,7 +193,7 @@
 /* Confirm Button */
 .confirmButton {
   position: absolute;
-  bottom: 60px;
+  bottom: 100px;
   right: 20px;
   background-color: var(--color-darkslateblue-400);
   border-radius: var(--br-20);

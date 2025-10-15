@@ -3,28 +3,32 @@ import { Box } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import StatusBar from "../components/StatusBar";
 import BottomNavigation from "../components/BottomNavigation";
-import styles from "./CreateChatRoom.module.css";
+import styles from "./ChatRoomName.module.css";
 
-const CreateChatRoom: FunctionComponent = () => {
+const ChatRoomName: FunctionComponent = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [chatType, setChatType] = useState("");
+  const [chatRoomName, setChatRoomName] = useState("");
+  const chatType = location.state?.chatType || "";
+  const selectedFriends = location.state?.selectedFriends || [];
 
   const onBackClick = useCallback(() => {
-    navigate("/chat-list");
-  }, [navigate]);
+    navigate("/invite-friends", { state: { chatType } });
+  }, [navigate, chatType]);
 
   const onCancelClick = useCallback(() => {
     navigate("/chat-list");
   }, [navigate]);
 
   const onCreateClick = useCallback(() => {
-    if (chatType.trim()) {
-      // 친구 초대 화면으로 이동하면서 유형 정보 전달
+    if (chatRoomName.trim()) {
+      // 채팅방 생성 완료 페이지로 이동
+      console.log("Creating chat room:", chatRoomName);
       console.log("Chat room category:", chatType);
-      navigate("/invite-friends", { state: { chatType } });
+      console.log("Selected friends:", selectedFriends);
+      navigate("/chat-room-created", { state: { chatRoomName, chatType, selectedFriends } });
     }
-  }, [navigate, chatType]);
+  }, [navigate, chatRoomName, chatType, selectedFriends]);
 
   return (
     <Box className={styles.container}>
@@ -35,7 +39,7 @@ const CreateChatRoom: FunctionComponent = () => {
         <div className={styles.backButton} onClick={onBackClick}>
           ←
         </div>
-        <div className={styles.headerTitle}>채팅방 만들기</div>
+        <div className={styles.headerTitle}>채팅방 이름</div>
         <div className={styles.placeholder}></div>
       </Box>
 
@@ -45,9 +49,9 @@ const CreateChatRoom: FunctionComponent = () => {
           <input
             className={styles.chatRoomNameInput}
             type="text"
-            placeholder="채팅방 유형을 입력하세요 (예: 친구, 가족 등)"
-            value={chatType}
-            onChange={(e) => setChatType(e.target.value)}
+            placeholder="채팅방 이름을 입력하세요"
+            value={chatRoomName}
+            onChange={(e) => setChatRoomName(e.target.value)}
           />
         </Box>
 
@@ -58,9 +62,9 @@ const CreateChatRoom: FunctionComponent = () => {
           <button 
             className={styles.createButton} 
             onClick={onCreateClick}
-            disabled={!chatType.trim()}
+            disabled={!chatRoomName.trim()}
           >
-            다음
+            생성
           </button>
         </Box>
       </Box>
@@ -70,4 +74,4 @@ const CreateChatRoom: FunctionComponent = () => {
   );
 };
 
-export default CreateChatRoom;
+export default ChatRoomName;

@@ -7,40 +7,6 @@
   font-family: var(--font-inter);
 }
 
-/* Status Bar */
-.statusBar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  box-sizing: border-box;
-  z-index: 10;
-}
-
-.time {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-black);
-}
-
-.rightSide {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.batteryIcon,
-.wifiIcon,
-.mobileSignalIcon {
-  width: 16px;
-  height: 16px;
-}
-
 /* Header */
 .header {
   position: absolute;
@@ -50,7 +16,7 @@
   height: 56px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0 16px;
   box-sizing: border-box;
   z-index: 10;
@@ -58,8 +24,6 @@
 }
 
 .backButton {
-  position: absolute;
-  left: 16px;
   font-size: 24px;
   font-weight: 500;
   color: var(--color-black);
@@ -70,13 +34,18 @@
   font-size: 20px;
   font-weight: 700;
   color: var(--color-black);
-  text-align: center;
 }
 
-.placeholder {
-  position: absolute;
-  right: 16px;
-  width: 24px; /* To balance the back button */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comeetImage {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Main Content */
@@ -93,21 +62,6 @@
   z-index: 9;
 }
 
-.filterPill {
-  border-radius: var(--br-20);
-  background-color: var(--color-darkslateblue-400);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 14px;
-}
-
-.filterText {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-white);
-}
-
 .inputContainer {
   width: 100%;
   max-width: 343px;
@@ -115,24 +69,22 @@
 
 .chatRoomNameInput {
   width: 100%;
-  height: 48px;
+  padding: 12px 16px;
   border: 1px solid var(--color-whitesmoke-200);
   border-radius: var(--br-8);
-  padding: 0 16px;
   font-size: 16px;
   font-family: var(--font-inter);
-  background-color: var(--color-whitesmoke-100);
+  background-color: var(--color-white);
   box-sizing: border-box;
+}
+
+.chatRoomNameInput:focus {
   outline: none;
+  border-color: var(--color-darkslateblue-400);
 }
 
 .chatRoomNameInput::placeholder {
   color: var(--color-gray);
-}
-
-.chatRoomNameInput:focus {
-  border-color: var(--color-darkslateblue-400);
-  background-color: var(--color-white);
 }
 
 .buttonContainer {
@@ -148,9 +100,9 @@
   border: 1px solid var(--color-whitesmoke-200);
   border-radius: var(--br-8);
   background-color: var(--color-white);
-  color: var(--color-gray);
+  color: var(--color-darkslateblue-400);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   font-family: var(--font-inter);
   cursor: pointer;
   transition: all 0.2s;
@@ -174,7 +126,7 @@
   transition: all 0.2s;
 }
 
-.createButton:hover:not(:disabled) {
+.createButton:hover {
   background-color: var(--color-darkslateblue-300);
 }
 

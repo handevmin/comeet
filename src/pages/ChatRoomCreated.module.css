@@ -70,17 +70,10 @@
   color: var(--color-black);
 }
 
-.logoContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.placeholder {
+  width: 24px;
 }
 
-.comeetImage {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-}
 
 /* Main Content */
 .content {

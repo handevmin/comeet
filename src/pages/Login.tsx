@@ -1,10 +1,13 @@
-import { FunctionComponent, useCallback } from "react";
+import { FunctionComponent, useCallback, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import StatusBar from "../components/StatusBar";
 import styles from "./Login.module.css";
 
 const Login: FunctionComponent = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const onLoginClick = useCallback(() => {
     navigate("/dashboard");
@@ -24,9 +27,23 @@ const Login: FunctionComponent = () => {
         <Box className={styles.inputButton}>
           <Box className={styles.field}>
             <div className={styles.label}>이메일</div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.input}
+              placeholder="이메일을 입력하세요"
+            />
           </Box>
           <Box className={styles.field}>
             <div className={styles.divLabel}>비밀번호</div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={styles.input}
+              placeholder="비밀번호를 입력하세요"
+            />
           </Box>
           <Box className={styles.button} onClick={onLoginClick} style={{ cursor: 'pointer' }}>
             <Typography
@@ -72,24 +89,7 @@ const Login: FunctionComponent = () => {
         </div>
       </Box>
       <div className={styles.comeet}>CoMeet</div>
-      <Box className={styles.statusBar}>
-        <img className={styles.notchIcon} alt="" src="/Notch@2x.png" />
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img
-            className={styles.mobileSignalIcon}
-            alt=""
-            src="/Mobile-Signal.svg"
-          />
-          <img
-            className={styles.recordingIndicatorIcon}
-            alt=""
-            src="/Recording-Indicator.svg"
-          />
-        </Box>
-        <img className={styles.leftSideIcon} alt="" src="/Left-Side.svg" />
-      </Box>
+      <StatusBar />
       <img className={styles.image1Icon} alt="" src="/image-1@2x.png" />
     </Box>
   );

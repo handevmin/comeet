@@ -1,6 +1,8 @@
 import { FunctionComponent, useCallback, useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
+import StatusBar from "../components/StatusBar";
+import BottomNavigation from "../components/BottomNavigation";
 import styles from "./Chat.module.css";
 
 const Chat: FunctionComponent = () => {
@@ -9,9 +11,12 @@ const Chat: FunctionComponent = () => {
   const [showBottomIcons, setShowBottomIcons] = useState(false);
   const [sharedMessage, setSharedMessage] = useState<string | null>(null);
   const [showSystemMessage, setShowSystemMessage] = useState(false);
+  const [showLocationSystemMessage, setShowLocationSystemMessage] = useState(false);
+  const [sharedLocationText, setSharedLocationText] = useState<string>("");
   const [aggregatedResults, setAggregatedResults] = useState<string[] | null>(null);
   const [aggregatedMessage, setAggregatedMessage] = useState<string | null>(null);
   const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
+  const [selectedDates, setSelectedDates] = useState<boolean[]>([]);
 
   useEffect(() => {
     // PeriodSelection 또는 DateTimeSelection에서 전달받은 메시지 처리
@@ -26,6 +31,16 @@ const Chat: FunctionComponent = () => {
       setAggregatedMessage(location.state.aggregatedMessage);
       setAggregatedResults(location.state.aggregatedResults);
       setShowSystemMessage(true); // 집계 결과 표시
+      // 선택 상태 초기화 (첫 번째 날짜는 선택된 상태로)
+      if (location.state.aggregatedResults) {
+        const initialSelection = new Array(location.state.aggregatedResults.length).fill(false);
+        initialSelection[0] = true; // 첫 번째 날짜(11월 3일) 선택
+        setSelectedDates(initialSelection);
+      }
+    } else if (location.state?.locationMessage) {
+      setSharedMessage(location.state.locationMessage);
+      setSharedLocationText(location.state.locationMessage);
+      setShowLocationSystemMessage(true); // 위치 공유 후 시스템 메시지 표시
     }
   }, [location.state]);
 
@@ -49,7 +64,8 @@ const Chat: FunctionComponent = () => {
   const onLocationClick = useCallback(() => {
     console.log("Location clicked");
     setShowBottomIcons(false);
-  }, []);
+    navigate("/map");
+  }, [navigate]);
 
   const onRegisterClick = useCallback(() => {
     setShowRegistrationMessage(true);
@@ -59,21 +75,23 @@ const Chat: FunctionComponent = () => {
     }, 3000);
   }, []);
 
+  const onDateToggle = useCallback((index: number) => {
+    setSelectedDates(prev => {
+      const newSelected = [...prev];
+      newSelected[index] = !newSelected[index];
+      return newSelected;
+    });
+  }, []);
+
+  // 선택된 날짜들을 가져오는 함수
+  const getSelectedDates = useCallback(() => {
+    if (!aggregatedResults) return [];
+    return aggregatedResults.filter((_, index) => selectedDates[index]);
+  }, [aggregatedResults, selectedDates]);
+
   return (
     <Box className={styles.container}>
-      {/* Status Bar */}
-      <Box className={styles.statusBar}>
-        <div className={styles.time}>9:41</div>
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img
-            className={styles.mobileSignalIcon}
-            alt=""
-            src="/Mobile-Signal.svg"
-          />
-        </Box>
-      </Box>
+      <StatusBar />
 
       {/* Header */}
       <Box className={styles.header}>
@@ -89,17 +107,33 @@ const Chat: FunctionComponent = () => {
 
       {/* Main Content Area */}
       <Box className={styles.content}>
-        <div className={styles.dateMarker}>2025년 6월 13일, 오전 9:30</div>
+        <div className={styles.dateMarker}>2025년 10월 29일, 오후 6시</div>
         
-        {/* System Message with Input Button (Other person's message - left side) */}
+        {/* System Message with Input Button (My message - right side) */}
         {showSystemMessage && (
-          <Box className={styles.otherMessage}>
-            <div className={styles.otherBubble}>
-              <div className={styles.otherText}>
+          <Box className={styles.myMessage}>
+            <div className={styles.myBubble}>
+              <div className={styles.myText}>
                 <div>만날 수 있는 날짜를 찾는 중 입니다.</div>
                 <div>가능한 시간과 날짜를 입력해주세요.</div>
               </div>
               <div className={styles.inputButton} onClick={() => navigate("/datetime-selection")}>
+                입력하기
+              </div>
+            </div>
+          </Box>
+        )}
+
+        {/* Location System Message (My message - right side) */}
+        {showLocationSystemMessage && (
+          <Box className={styles.myMessage}>
+            <div className={styles.myBubble}>
+              <div className={styles.myText}>
+                <div>중간지점을 찾는 중 입니다.</div>
+                <div>{sharedLocationText}</div>
+                <div>출발지를 입력해주세요.</div>
+              </div>
+              <div className={styles.inputButton} onClick={() => navigate("/map")}>
                 입력하기
               </div>
             </div>
@@ -115,20 +149,12 @@ const Chat: FunctionComponent = () => {
           </Box>
         )}
 
-        {/* Aggregated Results (Other person's message - left side) */}
-        {aggregatedMessage && aggregatedResults && (
-          <Box className={styles.otherMessage}>
-            <div className={styles.otherBubble}>
-              <div className={styles.otherText}>{aggregatedMessage}</div>
-              <Box className={styles.resultsList}>
-                {aggregatedResults.map((result, index) => (
-                  <div key={index} className={styles.resultItem}>
-                    {index + 1}. {result}
-                  </div>
-                ))}
-              </Box>
-              <div className={styles.registerButton} onClick={onRegisterClick}>
-                일정 등록
+        {/* Selected Dates Summary (My message - right side) */}
+        {aggregatedResults && getSelectedDates().length > 0 && (
+          <Box className={styles.myMessage}>
+            <div className={styles.myBubble}>
+              <div className={styles.myText}>
+                선택된 날짜: {getSelectedDates().join(', ')}
               </div>
             </div>
           </Box>
@@ -166,6 +192,8 @@ const Chat: FunctionComponent = () => {
           </div>
         </Box>
       )}
+      
+      <BottomNavigation />
     </Box>
   );
 };

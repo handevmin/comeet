@@ -1,15 +1,27 @@
 import { FunctionComponent, useCallback, useState } from "react";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import StatusBar from "../components/StatusBar";
+import BottomNavigation from "../components/BottomNavigation";
 import styles from "./PeriodSelection.module.css";
 
 const PeriodSelection: FunctionComponent = () => {
   const navigate = useNavigate();
-  const [selectedDates, setSelectedDates] = useState<number[]>([]);
+  const [selectedDates, setSelectedDates] = useState<number[]>([1, 2, 3, 4, 5, 6]); // 11월 1일부터 6일까지 선택
+  const [calendarTitle, setCalendarTitle] = useState<string>("");
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 10, 1)); // 2025년 11월 1일로 설정
 
   const onBackClick = useCallback(() => {
     navigate("/chat");
   }, [navigate]);
+
+  const onPrevMonth = useCallback(() => {
+    setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+  }, []);
+
+  const onNextMonth = useCallback(() => {
+    setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+  }, []);
 
   const onDateClick = useCallback((date: number) => {
     setSelectedDates(prev => {
@@ -53,9 +65,8 @@ const PeriodSelection: FunctionComponent = () => {
   }, []);
 
   const getCalendarDays = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
@@ -81,19 +92,7 @@ const PeriodSelection: FunctionComponent = () => {
 
   return (
     <Box className={styles.container}>
-      {/* Status Bar */}
-      <Box className={styles.statusBar}>
-        <div className={styles.time}>9:41</div>
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img
-            className={styles.mobileSignalIcon}
-            alt=""
-            src="/Mobile-Signal.svg"
-          />
-        </Box>
-      </Box>
+      <StatusBar />
 
       {/* Header */}
       <Box className={styles.header}>
@@ -106,7 +105,23 @@ const PeriodSelection: FunctionComponent = () => {
 
       {/* Period Selection */}
       <div className={styles.periodTitle}>기간 선택</div>
-      <div className={styles.monthYear}>{monthNames[month]} {year}</div>
+      
+      {/* Calendar Title Input */}
+      <div className={styles.titleInputContainer}>
+        <input
+          type="text"
+          placeholder="달력 제목을 입력하세요"
+          value={calendarTitle}
+          onChange={(e) => setCalendarTitle(e.target.value)}
+          className={styles.titleInput}
+        />
+      </div>
+      
+      <div className={styles.monthYearContainer}>
+        <button className={styles.monthButton} onClick={onPrevMonth}>‹</button>
+        <div className={styles.monthYear}>{monthNames[month]} {year}</div>
+        <button className={styles.monthButton} onClick={onNextMonth}>›</button>
+      </div>
 
       {/* Days of Week */}
       <Box className={styles.daysOfWeek}>
@@ -140,6 +155,8 @@ const PeriodSelection: FunctionComponent = () => {
       <Box className={styles.shareButton} onClick={onShareClick}>
         <div className={styles.shareText}>공유</div>
       </Box>
+      
+      <BottomNavigation />
     </Box>
   );
 };

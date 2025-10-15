@@ -1,11 +1,15 @@
 import { FunctionComponent, useCallback, useState } from "react";
 import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import StatusBar from "../components/StatusBar";
+import BottomNavigation from "../components/BottomNavigation";
 import styles from "./InviteFriends.module.css";
 
 const InviteFriends: FunctionComponent = () => {
   const navigate = useNavigate();
-  const [selectedFriends, setSelectedFriends] = useState<string[]>(['지윤', '성민']);
+  const location = useLocation();
+  const [selectedFriends, setSelectedFriends] = useState<string[]>([]);
+  const chatType = location.state?.chatType || ""; // CreateChatRoom에서 전달받은 유형
 
   const friends = [
     { name: '지윤', color: 'var(--color-darkslateblue-300)' },
@@ -21,10 +25,11 @@ const InviteFriends: FunctionComponent = () => {
   }, [navigate]);
 
   const onConfirmClick = useCallback(() => {
-    // 채팅방 생성 페이지로 이동
+    // 채팅방 이름 설정 페이지로 이동
     console.log("선택된 친구들:", selectedFriends);
-    navigate("/create-chat-room", { state: { selectedFriends } });
-  }, [navigate, selectedFriends]);
+    console.log("채팅방 카테고리:", chatType);
+    navigate("/chat-room-name", { state: { selectedFriends, chatType } });
+  }, [navigate, selectedFriends, chatType]);
 
   const onFriendToggle = useCallback((friendName: string) => {
     setSelectedFriends(prev => {
@@ -42,21 +47,12 @@ const InviteFriends: FunctionComponent = () => {
 
   return (
     <Box className={styles.container}>
-      {/* Status Bar */}
-      <Box className={styles.statusBar}>
-        <div className={styles.time}>9:41</div>
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img className={styles.mobileSignalIcon} alt="" src="/Mobile-Signal.svg" />
-          <img className={styles.recordingIndicatorIcon} alt="" src="/Recording-Indicator.svg" />
-        </Box>
-      </Box>
+      <StatusBar />
 
       {/* Header */}
       <Box className={styles.header}>
         <div className={styles.backButton} onClick={onBackClick}>←</div>
-        <div className={styles.title}>대화상대 초대</div>
+        <div className={styles.title}>친구 초대</div>
         <div className={styles.confirmButton} onClick={onConfirmClick}>
           {selectedFriends.length} 확인
         </div>
@@ -113,6 +109,8 @@ const InviteFriends: FunctionComponent = () => {
           );
         })}
       </Box>
+      
+      <BottomNavigation />
     </Box>
   );
 };

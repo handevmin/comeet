@@ -1,0 +1,34 @@
+.statusBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 375px;
+  height: 44px;
+  overflow: hidden;
+}
+
+.rightSide {
+  position: absolute;
+  top: 17.3px;
+  right: 14.6px;
+  width: 66.7px;
+  height: 11.3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wifiIcon {
+  width: 15.3px;
+  height: 11px;
+}
+
+.mobileSignalIcon {
+  width: 17px;
+  height: 10.7px;
+}
+
+.batteryIcon {
+  width: 24.3px;
+  height: 11.3px;
+}

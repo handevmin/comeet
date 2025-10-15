@@ -2,6 +2,8 @@ import { FunctionComponent, useCallback } from "react";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Calendar from "./Calendar";
+import StatusBar from "../components/StatusBar";
+import BottomNavigation from "../components/BottomNavigation";
 import styles from "./Dashboard.module.css";
 
 const Dashboard: FunctionComponent = () => {
@@ -30,24 +32,7 @@ const Dashboard: FunctionComponent = () => {
 
   return (
     <Box className={styles.div}>
-      <Box className={styles.statusBar}>
-        <img className={styles.notchIcon} alt="" src="/Notch@2x.png" />
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img
-            className={styles.mobileSignalIcon}
-            alt=""
-            src="/Mobile-Signal.svg"
-          />
-          <img
-            className={styles.recordingIndicatorIcon}
-            alt=""
-            src="/Recording-Indicator.svg"
-          />
-        </Box>
-        <img className={styles.leftSideIcon} alt="" src="/Left-Side.svg" />
-      </Box>
+      <StatusBar />
       
       <Box className={styles.header}>
         <img className={styles.comeetImage} alt="CoMeet" src="/image-1@2x.png" />
@@ -94,6 +79,8 @@ const Dashboard: FunctionComponent = () => {
           </Box>
         </Box>
       </Box>
+      
+      <BottomNavigation />
     </Box>
   );
 };

@@ -42,7 +42,7 @@ const Component4: FunctionComponent = () => {
         </Box>
         <img className={styles.leftSideIcon} alt="" src="/Left-Side.svg" />
       </Box>
-      <div className={styles.div2}>제목 추가</div>
+      <div className={styles.div2}>일정 추가</div>
       <Box className={styles.pills}>
         <Box className={styles.pill}>
           <div className={styles.div3}>일정</div>

@@ -1,6 +1,7 @@
 import { FunctionComponent, useCallback, useState } from "react";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import StatusBar from "../components/StatusBar";
 import styles from "./ChatParticipants.module.css";
 
 const ChatParticipants: FunctionComponent = () => {
@@ -27,19 +28,7 @@ const ChatParticipants: FunctionComponent = () => {
 
   return (
     <Box className={styles.container}>
-      {/* Status Bar */}
-      <Box className={styles.statusBar}>
-        <div className={styles.time}>9:41</div>
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img
-            className={styles.mobileSignalIcon}
-            alt=""
-            src="/Mobile-Signal.svg"
-          />
-        </Box>
-      </Box>
+      <StatusBar />
 
       {/* Header */}
       <Box className={styles.header}>
@@ -85,6 +74,8 @@ const ChatParticipants: FunctionComponent = () => {
           <div className={styles.shareIcon}>↗</div>
         </div>
       </Box>
+      
+      <BottomNavigation />
     </Box>
   );
 };

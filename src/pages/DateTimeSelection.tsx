@@ -1,6 +1,8 @@
 import { FunctionComponent, useCallback, useState } from "react";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import StatusBar from "../components/StatusBar";
+import BottomNavigation from "../components/BottomNavigation";
 import styles from "./DateTimeSelection.module.css";
 
 const DateTimeSelection: FunctionComponent = () => {
@@ -20,8 +22,8 @@ const DateTimeSelection: FunctionComponent = () => {
     
     // 집계된 결과 생성 (예시 데이터)
     const aggregatedResults = [
-      "16일 16:00~18:00",
-      "17일 19:00~23:00"
+      "11월 3일 16:00~18:00",
+      "11월 4일 19:00~23:00"
     ];
     
     // 채팅창으로 돌아가면서 집계된 결과 전달
@@ -55,19 +57,7 @@ const DateTimeSelection: FunctionComponent = () => {
 
   return (
     <Box className={styles.container}>
-      {/* Status Bar */}
-      <Box className={styles.statusBar}>
-        <div className={styles.time}>9:41</div>
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img
-            className={styles.mobileSignalIcon}
-            alt=""
-            src="/Mobile-Signal.svg"
-          />
-        </Box>
-      </Box>
+      <StatusBar />
 
       {/* Header */}
       <Box className={styles.header}>
@@ -113,7 +103,7 @@ const DateTimeSelection: FunctionComponent = () => {
         {times.map((time) => (
           <Box key={time} className={styles.timeRow}>
             <div className={styles.timeLabel}>
-              {isAM ? time : time - 12}
+              {isAM ? time : time}
             </div>
             {dates.map((date) => (
               <div
@@ -132,6 +122,8 @@ const DateTimeSelection: FunctionComponent = () => {
       <Box className={styles.confirmButton} onClick={onConfirmClick}>
         <div className={styles.confirmText}>확인</div>
       </Box>
+      
+      <BottomNavigation />
     </Box>
   );
 };

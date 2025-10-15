@@ -77,8 +77,8 @@
 
 .chatName {
   font-size: 16px;
-  font-weight: 600;
-  color: var(--color-black);
+  font-weight: 500;
+  color: var(--color-gray);
   flex: 1;
   margin-left: 8px;
 }
@@ -159,7 +159,7 @@
   cursor: pointer;
   transition: background-color 0.2s;
   width: fit-content;
-  margin: 0 auto;
+  margin: 8px auto 0 auto;
 }
 
 .inputButton:hover {
@@ -171,11 +171,36 @@
 }
 
 .resultItem {
+  display: flex;
+  align-items: center;
   font-size: 14px;
   font-weight: 500;
   color: var(--color-black);
   line-height: 1.4;
   margin-bottom: 4px;
+  gap: 12px;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-darkslateblue-400);
+  cursor: pointer;
+}
+
+.resultText {
+  flex: 1;
+  font-size: 14px;
+  color: var(--color-black);
 }
 
 .registerButton {
@@ -264,7 +289,7 @@
 /* Message Input Bar */
 .inputBar {
   position: absolute;
-  bottom: 38px; /* 하단 네비게이션 바 높이만큼 위로 */
+  bottom: 78px; /* 하단 네비게이션 바 높이만큼 위로 */
   left: 0;
   width: 100%;
   height: 80px;
@@ -319,10 +344,10 @@
 /* Bottom Icons */
 .bottomIcons {
   position: absolute;
-  bottom: 142px; /* 입력바(80px) + 네비게이션바(78px) - 20px 더 위로 */
+  bottom: 180px; /* 입력바(80px) + 네비게이션바(78px) + 여유공간(22px) */
   left: 0;
   width: 100%;
-  height: 20px;
+  height: 40px; /* 높이 증가 */
   background-color: var(--color-white);
   display: flex;
   align-items: center;
@@ -356,14 +381,14 @@
 }
 
 .iconButton {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: var(--color-whitesmoke-100);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
   transition: all 0.2s;
   border: 2px solid var(--color-whitesmoke-200);
@@ -376,8 +401,8 @@
 }
 
 .locationIcon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   position: relative;
   background-color: var(--color-black);
   border-radius: 50% 50% 50% 0;
@@ -397,39 +422,39 @@
 }
 
 .calendarIcon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   position: relative;
   background-color: var(--color-white);
-  border: 3px solid var(--color-black);
-  border-radius: 3px;
+  border: 2px solid var(--color-black);
+  border-radius: 2px;
 }
 
 .calendarIcon::before {
   content: '';
   position: absolute;
-  top: -3px;
+  top: -2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 16px;
-  height: 6px;
+  width: 12px;
+  height: 4px;
   background-color: var(--color-black);
-  border-radius: 3px 3px 0 0;
+  border-radius: 2px 2px 0 0;
   background-image: 
-    radial-gradient(circle, var(--color-white) 1.5px, transparent 1.5px),
-    radial-gradient(circle, var(--color-white) 1.5px, transparent 1.5px);
-  background-position: 2px 1.5px, 10px 1.5px;
-  background-size: 3px 3px, 3px 3px;
+    radial-gradient(circle, var(--color-white) 1px, transparent 1px),
+    radial-gradient(circle, var(--color-white) 1px, transparent 1px);
+  background-position: 2px 1px, 8px 1px;
+  background-size: 2px 2px, 2px 2px;
   background-repeat: no-repeat;
 }
 
 .calendarIcon::after {
   content: '';
   position: absolute;
-  top: 6px;
-  left: 3px;
-  right: 3px;
-  height: 2px;
+  top: 4px;
+  left: 2px;
+  right: 2px;
+  height: 1px;
   background-color: var(--color-black);
 }
 

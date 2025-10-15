@@ -1,6 +1,8 @@
 import { FunctionComponent, useCallback, useState } from "react";
 import { Box } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
+import StatusBar from "../components/StatusBar";
+import BottomNavigation from "../components/BottomNavigation";
 import styles from "./ChatRoomCreated.module.css";
 
 const ChatRoomCreated: FunctionComponent = () => {
@@ -9,6 +11,7 @@ const ChatRoomCreated: FunctionComponent = () => {
   const [linkCopied, setLinkCopied] = useState(false);
   
   const chatRoomName = location.state?.chatRoomName || "새 채팅방";
+  const chatType = location.state?.chatType || "";
 
   const onBackClick = useCallback(() => {
     navigate("/chat-list");
@@ -24,34 +27,21 @@ const ChatRoomCreated: FunctionComponent = () => {
   }, []);
 
   const onConfirmClick = useCallback(() => {
-    navigate("/chat");
-  }, [navigate]);
+    // 채팅방 생성 완료 후 ChatList로 이동하면서 카테고리 정보 전달
+    navigate("/chat-list", { state: { newChatRoom: { name: chatRoomName, category: chatType } } });
+  }, [navigate, chatRoomName, chatType]);
 
   return (
     <Box className={styles.container}>
-      {/* Status Bar */}
-      <Box className={styles.statusBar}>
-        <div className={styles.time}>9:41</div>
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img
-            className={styles.mobileSignalIcon}
-            alt=""
-            src="/Mobile-Signal.svg"
-          />
-        </Box>
-      </Box>
+      <StatusBar />
 
       {/* Header */}
       <Box className={styles.header}>
         <div className={styles.backButton} onClick={onBackClick}>
           ←
         </div>
-        <div className={styles.headerTitle}>Chat</div>
-        <div className={styles.logoContainer}>
-          <img className={styles.comeetImage} alt="CoMeet" src="/image-1@2x.png" />
-        </div>
+        <div className={styles.headerTitle}>채팅방 생성 완료</div>
+        <div className={styles.placeholder}></div>
       </Box>
 
       {/* Main Content */}
@@ -73,6 +63,8 @@ const ChatRoomCreated: FunctionComponent = () => {
           <div className={styles.copyMessage}>링크가 복사되었습니다</div>
         )}
       </Box>
+      
+      <BottomNavigation />
     </Box>
   );
 };

@@ -1,31 +1,54 @@
-import { FunctionComponent, useCallback } from "react";
+import { FunctionComponent, useCallback, useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import StatusBar from "../components/StatusBar";
+import BottomNavigation from "../components/BottomNavigation";
 import styles from "./ChatList.module.css";
 
 const ChatList: FunctionComponent = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedFilter, setSelectedFilter] = useState<string>("전체");
+  const [chatRooms, setChatRooms] = useState([
+    { id: 1, name: "지윤, 민주, 성민", category: "일반", hasUnread: true },
+    { id: 2, name: "재민, 진서", category: "일반", hasUnread: true },
+    { id: 3, name: "서울", category: "일반", hasUnread: true },
+  ]);
+
+  // 새로 생성된 채팅방 추가
+  useEffect(() => {
+    if (location.state?.newChatRoom) {
+      const newRoom = {
+        id: Date.now(),
+        name: location.state.newChatRoom.name,
+        category: location.state.newChatRoom.category,
+        hasUnread: true
+      };
+      setChatRooms(prev => [newRoom, ...prev]);
+      // 새 채팅방 추가 시에는 필터를 변경하지 않음 (전체 유지)
+    }
+  }, [location.state]);
 
   const onChatClick = useCallback(() => {
     navigate("/chat");
   }, [navigate]);
 
   const onNewChatClick = useCallback(() => {
-    navigate("/invite-friends");
+    navigate("/create-chat-room");
   }, [navigate]);
+
+  const onFilterClick = useCallback((filter: string) => {
+    setSelectedFilter(filter);
+  }, []);
+
+  // 필터링된 채팅방 목록
+  const filteredChatRooms = selectedFilter === "전체" 
+    ? chatRooms 
+    : chatRooms.filter(room => (room.category || "일반") === selectedFilter);
 
   return (
     <Box className={styles.container}>
-      {/* Status Bar */}
-      <Box className={styles.statusBar}>
-        <div className={styles.time}>9:41</div>
-        <Box className={styles.rightSide}>
-          <img className={styles.batteryIcon} alt="" src="/Battery.svg" />
-          <img className={styles.wifiIcon} alt="" src="/Wifi.svg" />
-          <img className={styles.mobileSignalIcon} alt="" src="/Mobile-Signal.svg" />
-          <img className={styles.recordingIndicatorIcon} alt="" src="/Recording-Indicator.svg" />
-        </Box>
-      </Box>
+      <StatusBar />
 
       {/* Header */}
       <Box className={styles.header}>
@@ -40,70 +63,42 @@ const ChatList: FunctionComponent = () => {
 
       {/* Filter Pills */}
       <Box className={styles.pills}>
-        <Box className={styles.pillActive}>
+        <Box 
+          className={selectedFilter === "전체" ? styles.pillActive : styles.pillInactive}
+          onClick={() => onFilterClick("전체")}
+        >
           <div className={styles.pillText}>전체</div>
         </Box>
-        <Box className={styles.pillInactive}>
-          <div className={styles.pillText}>친구</div>
-        </Box>
+        {/* 동적으로 생성된 유형들만 표시 (새로 생성된 채팅방이 있을 때만) */}
+        {Array.from(new Set(chatRooms.map(room => room.category || "일반")))
+          .filter(category => category !== "일반") // 기본 유형 제외
+          .map(category => (
+            <Box 
+              key={category}
+              className={selectedFilter === category ? styles.pillActive : styles.pillInactive}
+              onClick={() => onFilterClick(category)}
+            >
+              <div className={styles.pillText}>{category}</div>
+            </Box>
+          ))
+        }
       </Box>
 
       {/* Chat List */}
       <Box className={styles.chatList}>
-        <Box className={styles.chatItem} onClick={onChatClick}>
-          <Box className={styles.unreadDot} />
-          <Box className={styles.avatar1} />
-          <Box className={styles.chatContent}>
-            <div className={styles.chatName}>지윤, 민주, 성민</div>
+        {filteredChatRooms.map((room, index) => (
+          <Box key={room.id} className={styles.chatItem} onClick={onChatClick}>
+            {room.hasUnread && <Box className={styles.unreadDot} />}
+            <Box className={styles[`avatar${(index % 7) + 1}`]} />
+            <Box className={styles.chatContent}>
+              <div className={styles.chatName}>{room.name}</div>
+              <div className={styles.chatCategory}>{room.category || "일반"}</div>
+            </Box>
           </Box>
-        </Box>
-
-        <Box className={styles.chatItem} onClick={onChatClick}>
-          <Box className={styles.unreadDot} />
-          <Box className={styles.avatar2} />
-          <Box className={styles.chatContent}>
-            <div className={styles.chatName}>소민, 지아, 정민, 윤서 ...</div>
-          </Box>
-        </Box>
-
-        <Box className={styles.chatItem} onClick={onChatClick}>
-          <Box className={styles.unreadDot} />
-          <Box className={styles.avatar3} />
-          <Box className={styles.chatContent}>
-            <div className={styles.chatName}>경주 여행 모임</div>
-          </Box>
-        </Box>
-
-        <Box className={styles.chatItem} onClick={onChatClick}>
-          <Box className={styles.unreadDot} />
-          <Box className={styles.avatar4} />
-          <Box className={styles.chatContent}>
-            <div className={styles.chatName}>재민, 진서</div>
-          </Box>
-        </Box>
-
-        <Box className={styles.chatItem} onClick={onChatClick}>
-          <Box className={styles.unreadDot} />
-          <Box className={styles.avatar5} />
-          <Box className={styles.chatContent}>
-            <div className={styles.chatName}>서울</div>
-          </Box>
-        </Box>
-
-        <Box className={styles.chatItem} onClick={onChatClick}>
-          <Box className={styles.avatar6} />
-          <Box className={styles.chatContent}>
-            <div className={styles.chatName}>선하, 용운, 주빈, 지예 ...</div>
-          </Box>
-        </Box>
-
-        <Box className={styles.chatItem} onClick={onChatClick}>
-          <Box className={styles.avatar7} />
-          <Box className={styles.chatContent}>
-            <div className={styles.chatName}>0626</div>
-          </Box>
-        </Box>
+        ))}
       </Box>
+      
+      <BottomNavigation />
     </Box>
   );
 };

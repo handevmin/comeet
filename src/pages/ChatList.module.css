@@ -228,3 +228,10 @@
   color: var(--color-black);
   line-height: 1.4;
 }
+
+.chatCategory {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-gray);
+  margin-top: 2px;
+}

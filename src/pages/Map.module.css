@@ -1,0 +1,229 @@
+.container {
+  width: 100%;
+  height: 812px;
+  background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-inter);
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 10;
+  background-color: var(--color-white);
+}
+
+.backButton {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-gray);
+}
+
+.placeholder {
+  width: 24px;
+}
+
+/* Map Container */
+.mapContainer {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  height: 276px;
+  z-index: 1;
+}
+
+/* Search Section */
+.searchSection {
+  position: absolute;
+  top: 376px;
+  left: 0;
+  right: 0;
+  bottom: 78px;
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-whitesmoke-200);
+  padding: 16px;
+  box-sizing: border-box;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchInput {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--color-whitesmoke-200);
+  border-radius: var(--br-8);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: var(--font-inter);
+  background-color: transparent;
+  color: var(--color-black);
+}
+
+.input::placeholder {
+  color: var(--color-gray);
+}
+
+/* Search Results */
+.resultsContainer {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  border: 1px solid var(--color-whitesmoke-200);
+  border-radius: var(--br-8);
+  background-color: var(--color-white);
+  flex-shrink: 0;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-whitesmoke-100);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.resultItem:hover {
+  background-color: var(--color-whitesmoke-100);
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultItem.selectedResult {
+  background-color: var(--color-darkslateblue-100);
+}
+
+.resultItem.selectedResult:hover {
+  background-color: var(--color-darkslateblue-200);
+}
+
+.locationIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.placeInfo {
+  flex: 1;
+}
+
+.placeName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-black);
+  margin-bottom: 4px;
+}
+
+.placeAddress {
+  font-size: 12px;
+  color: var(--color-gray);
+}
+
+/* Transport Options */
+.transportOptions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.transportButton {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--color-whitesmoke-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray);
+}
+
+.transportButton:hover {
+  background-color: var(--color-darkslateblue-100);
+  border-color: var(--color-darkslateblue-200);
+  transform: scale(1.05);
+}
+
+.transportButton.selected {
+  background-color: var(--color-darkslateblue-400);
+  border-color: var(--color-darkslateblue-400);
+  color: var(--color-white);
+  transform: scale(1.05);
+}
+
+.transportButton.selected:hover {
+  background-color: var(--color-darkslateblue-500);
+  border-color: var(--color-darkslateblue-500);
+}
+
+/* Share Button */
+.shareButton {
+  width: 100%;
+  height: 48px;
+  background-color: var(--color-darkslateblue-400);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--br-8);
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 0px;
+  flex-shrink: 0;
+}
+
+.shareButton:hover {
+  background-color: var(--color-darkslateblue-500);
+}
+
