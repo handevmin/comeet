@@ -2,6 +2,7 @@ import { FunctionComponent, useCallback, useState } from "react";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import StatusBar from "../components/StatusBar";
+import BottomNavigation from "../components/BottomNavigation";
 import styles from "./ChatParticipants.module.css";
 
 const ChatParticipants: FunctionComponent = () => {
