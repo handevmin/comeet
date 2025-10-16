@@ -24,6 +24,7 @@ import PeriodSelection from "./pages/PeriodSelection";
 import DateTimeSelection from "./pages/DateTimeSelection";
 import Settings from "./pages/Settings";
 import Map from "./pages/Map";
+import MidpointResult from "./pages/MidpointResult";
 
 function App() {
   const action = useNavigationType();
@@ -113,6 +114,10 @@ function App() {
               title = "지도 - CoMeet";
               metaDescription = "CoMeet 지도 페이지";
               break;
+            case "/midpoint-result":
+              title = "중간지점 결과 - CoMeet";
+              metaDescription = "CoMeet 중간지점 결과 페이지";
+              break;
     }
 
     if (title) {
@@ -166,6 +171,7 @@ function App() {
                  <Route path="/datetime-selection" element={<DateTimeSelection />} />
                  <Route path="/settings" element={<Settings />} />
                  <Route path="/map" element={<Map />} />
+                 <Route path="/midpoint-result" element={<MidpointResult />} />
                </Routes>
       </div>
     </div>

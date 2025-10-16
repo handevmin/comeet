@@ -27,15 +27,12 @@ const Map: FunctionComponent = () => {
   }, [navigate]);
 
   const onShareClick = useCallback(() => {
-    if (selectedLocation) {
-      const transportText = selectedTransport ? ` (${selectedTransport})` : "";
-      navigate("/chat", {
-        state: {
-          locationMessage: `위치: ${selectedLocation}${transportText}`
-        }
-      });
-    }
-  }, [navigate, selectedLocation, selectedTransport]);
+    navigate("/chat", {
+      state: {
+        locationMessage: "trigger_system_message" // 시스템 메시지만 트리거
+      }
+    });
+  }, [navigate]);
 
   const onTransportClick = useCallback((transport: string) => {
     setSelectedTransport(transport);

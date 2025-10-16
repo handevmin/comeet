@@ -332,9 +332,16 @@
   align-items: center;
   justify-content: center;
   color: #000000;
+  pointer-events: none; /* 클릭 이벤트를 부모 요소로 전달 */
   font-size: 24px;
   font-weight: 500;
   transition: background-color 0.2s;
+}
+
+.plusButton::before {
+  content: '+';
+  transform: translateY(-1px); /* + 텍스트만 2px 위로 이동 */
+  display: block;
 }
 
 .plusButton:hover {
@@ -448,14 +455,75 @@
   background-repeat: no-repeat;
 }
 
-.calendarIcon::after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 2px;
-  right: 2px;
-  height: 1px;
-  background-color: var(--color-black);
+/* Other Message Styles */
+.otherMessage {
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px 0;
+  padding: 0 16px;
+}
+
+.otherBubble {
+  background-color: #f0f0f0;
+  border-radius: 18px 18px 18px 4px;
+  padding: 12px 16px;
+  max-width: 80%;
+  position: relative;
+}
+
+.otherText {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-black);
+}
+
+.dateItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  padding: 4px 0;
+}
+
+.checkButton {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007AFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #007AFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkButton.checked {
+  background-color: #007AFF;
+  color: white;
+}
+
+.checkButton:hover {
+  transform: scale(1.1);
+}
+
+.registerButton {
+  background-color: #007AFF;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.registerButton:hover {
+  background-color: #0056b3;
 }
 
 

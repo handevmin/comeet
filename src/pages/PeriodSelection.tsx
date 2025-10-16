@@ -7,8 +7,7 @@ import styles from "./PeriodSelection.module.css";
 
 const PeriodSelection: FunctionComponent = () => {
   const navigate = useNavigate();
-  const [selectedDates, setSelectedDates] = useState<number[]>([1, 2, 3, 4, 5, 6]); // 11월 1일부터 6일까지 선택
-  const [calendarTitle, setCalendarTitle] = useState<string>("");
+  const [selectedDates, setSelectedDates] = useState<number[]>([]); // 초기에는 아무 날짜도 선택되지 않음
   const [currentDate, setCurrentDate] = useState(new Date(2025, 10, 1)); // 2025년 11월 1일로 설정
 
   const onBackClick = useCallback(() => {
@@ -45,11 +44,11 @@ const PeriodSelection: FunctionComponent = () => {
       .map(date => `${date}일`)
       .join(', ');
     
-    // 채팅창으로 돌아가면서 선택된 날짜 정보 전달
+    // 채팅창으로 돌아가면서 시스템 메시지 트리거
     navigate("/chat", { 
       state: { 
         sharedDates: selectedDates,
-        dateMessage: `가능한 날짜: ${dateString}`
+        dateMessage: "trigger_system_message" // 시스템 메시지 트리거
       }
     });
   }, [selectedDates, navigate]);
@@ -59,9 +58,8 @@ const PeriodSelection: FunctionComponent = () => {
   }, [selectedDates]);
 
   const isDateSelectable = useCallback((date: number) => {
-    const today = new Date();
-    const currentDate = new Date(today.getFullYear(), today.getMonth(), date);
-    return currentDate >= today; // 오늘 이후 날짜만 선택 가능
+    // 11월의 모든 날짜를 선택 가능하도록 설정
+    return true;
   }, []);
 
   const getCalendarDays = () => {
@@ -105,17 +103,6 @@ const PeriodSelection: FunctionComponent = () => {
 
       {/* Period Selection */}
       <div className={styles.periodTitle}>기간 선택</div>
-      
-      {/* Calendar Title Input */}
-      <div className={styles.titleInputContainer}>
-        <input
-          type="text"
-          placeholder="달력 제목을 입력하세요"
-          value={calendarTitle}
-          onChange={(e) => setCalendarTitle(e.target.value)}
-          className={styles.titleInput}
-        />
-      </div>
       
       <div className={styles.monthYearContainer}>
         <button className={styles.monthButton} onClick={onPrevMonth}>‹</button>

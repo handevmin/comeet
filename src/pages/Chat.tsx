@@ -17,13 +17,12 @@ const Chat: FunctionComponent = () => {
   const [aggregatedMessage, setAggregatedMessage] = useState<string | null>(null);
   const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
   const [selectedDates, setSelectedDates] = useState<boolean[]>([]);
+  const [showMidpointFound, setShowMidpointFound] = useState(false);
 
   useEffect(() => {
     // PeriodSelection 또는 DateTimeSelection에서 전달받은 메시지 처리
     if (location.state?.dateMessage) {
-      setSharedMessage(location.state.dateMessage);
       setShowSystemMessage(true); // 날짜 공유 후 시스템 메시지 표시
-      // 메시지는 계속 유지 (자동 제거하지 않음)
     } else if (location.state?.timeMessage) {
       setSharedMessage(location.state.timeMessage);
       setShowSystemMessage(true); // 시간 공유 후 시스템 메시지 표시
@@ -31,16 +30,18 @@ const Chat: FunctionComponent = () => {
       setAggregatedMessage(location.state.aggregatedMessage);
       setAggregatedResults(location.state.aggregatedResults);
       setShowSystemMessage(true); // 집계 결과 표시
-      // 선택 상태 초기화 (첫 번째 날짜는 선택된 상태로)
+      // 선택 상태 초기화 (모든 날짜는 선택되지 않은 상태로)
       if (location.state.aggregatedResults) {
         const initialSelection = new Array(location.state.aggregatedResults.length).fill(false);
-        initialSelection[0] = true; // 첫 번째 날짜(11월 3일) 선택
         setSelectedDates(initialSelection);
       }
     } else if (location.state?.locationMessage) {
-      setSharedMessage(location.state.locationMessage);
-      setSharedLocationText(location.state.locationMessage);
+      // 위치 메시지는 표시하지 않고 시스템 메시지만 표시
       setShowLocationSystemMessage(true); // 위치 공유 후 시스템 메시지 표시
+      // 2초 후에 중간지점을 찾았다는 메시지 표시
+      setTimeout(() => {
+        setShowMidpointFound(true);
+      }, 2000);
     }
   }, [location.state]);
 
@@ -65,6 +66,10 @@ const Chat: FunctionComponent = () => {
     console.log("Location clicked");
     setShowBottomIcons(false);
     navigate("/map");
+  }, [navigate]);
+
+  const onViewMidpointClick = useCallback(() => {
+    navigate("/midpoint-result");
   }, [navigate]);
 
   const onRegisterClick = useCallback(() => {
@@ -130,11 +135,24 @@ const Chat: FunctionComponent = () => {
             <div className={styles.myBubble}>
               <div className={styles.myText}>
                 <div>중간지점을 찾는 중 입니다.</div>
-                <div>{sharedLocationText}</div>
                 <div>출발지를 입력해주세요.</div>
               </div>
               <div className={styles.inputButton} onClick={() => navigate("/map")}>
                 입력하기
+              </div>
+            </div>
+          </Box>
+        )}
+
+        {/* Midpoint Found Message (My message - right side) */}
+        {showMidpointFound && (
+          <Box className={styles.myMessage}>
+            <div className={styles.myBubble}>
+              <div className={styles.myText}>
+                <div>중간 지점을 찾았습니다.</div>
+              </div>
+              <div className={styles.inputButton} onClick={onViewMidpointClick}>
+                보러가기
               </div>
             </div>
           </Box>
@@ -149,16 +167,31 @@ const Chat: FunctionComponent = () => {
           </Box>
         )}
 
-        {/* Selected Dates Summary (My message - right side) */}
-        {aggregatedResults && getSelectedDates().length > 0 && (
+        {/* Aggregated Dates Message (Right side - My message) */}
+        {aggregatedResults && (
           <Box className={styles.myMessage}>
             <div className={styles.myBubble}>
               <div className={styles.myText}>
-                선택된 날짜: {getSelectedDates().join(', ')}
+                <div>가능한 날짜가 집계되었습니다</div>
+                {aggregatedResults.map((result, index) => (
+                  <div key={index} className={styles.dateItem}>
+                    <span 
+                      className={`${styles.checkButton} ${selectedDates[index] ? styles.checked : ''}`}
+                      onClick={() => onDateToggle(index)}
+                    >
+                      {selectedDates[index] ? '✓' : ''}
+                    </span>
+                    <span>{index + 1}. {result}</span>
+                  </div>
+                ))}
+                <div className={styles.registerButton} onClick={onRegisterClick}>
+                  일정 등록
+                </div>
               </div>
             </div>
           </Box>
         )}
+
 
         {/* Registration Success Message */}
         {showRegistrationMessage && (
@@ -174,9 +207,8 @@ const Chat: FunctionComponent = () => {
 
       {/* Message Input Bar */}
       <Box className={styles.inputBar}>
-        <div className={styles.inputField}>
-          <div className={styles.plusButton} onClick={onPlusClick}>
-            +
+        <div className={styles.inputField} onClick={onPlusClick}>
+          <div className={styles.plusButton}>
           </div>
         </div>
       </Box>

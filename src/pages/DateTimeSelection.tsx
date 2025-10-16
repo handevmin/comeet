@@ -69,7 +69,7 @@ const DateTimeSelection: FunctionComponent = () => {
       </Box>
 
       {/* Month/Year */}
-      <div className={styles.monthYear}>6월 2025</div>
+      <div className={styles.monthYear}>11월 2025</div>
 
       {/* AM/PM Toggle */}
       <Box className={styles.amPmToggle}>
